@@ -1,0 +1,98 @@
+nom: Server
+type: device
+
+impact_factor:
+  - elec : electricity.yml
+  - other:
+    - GWP :
+      - default: 3.66E+03
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip    
+    - GWPPb  :
+      - default: 4.19E+00
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - GWPPf  :
+      - default: 3.66E+03
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - GWPPlu  :
+      - default: 6.65E-07
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - IR  :
+      - default: 2.32E+03
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip    
+    - LU  :
+      - default: -1.47E+02
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - ODP  :
+      - default: 1.35E-03
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - PM  :
+      - default: 1.13E-04
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - POCP  :
+      - default: 8.40E+00
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - WU  :
+      - default: -3.71E+03
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip  
+    - MIPS  :
+      - default: 1.06E+04
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - ADPe :
+      - default: 3.78E-02
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - ADPf :
+      - default: 5.15E+04
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - ADP :
+      - default:
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - AP :
+      - default: 1.97E+01
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - CTUe :
+      - default: 4.84E+04
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - CTUh-c :
+      - default: 1.94E-07
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - CTUh-nc  :
+      - default: 1.87E-05
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - Epf :
+      - default: -2.58E-01
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - Epm :
+      - default: 2.94E+00
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - Ept :
+      - default: 2.70E+01
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+
+constants:
+  - other_consumption_ratio: 0.15
+
+attributes:
+  - location
+  - duration
+  - load
+  - power
+
+components:
+  - CPU
+  - RAM
+  - SSD
+  - HDD
+  - MOTHERBOARD
+  - ASSEMBLY
+  - POWER_SUPPLY
+  - CASING
+  - OTHER
+
+methods:
+  - elec: 
+    - 1 : power*duration
+    - 2 : (CPU.elec(load)+RAM.elec(load))*(1+other_consumption_ratio)*duration
+  - other : 
+    - 1 : CPU.other+RAM.other+SSD.other+HDD.other+MOTHERBOARD.other+ASSEMBLY.other+POWER_SUPPLY.other+CASING.other
+    - 2 : impact_factor.other
+  - usage : elec*impact_factor.elec

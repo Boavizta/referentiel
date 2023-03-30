@@ -1,0 +1,29 @@
+nom: HDD
+type: component
+
+impact_factors:
+    - elec : electricity.yml
+    - other:
+      - GWP :
+        - default: 31.10
+        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+      - ADP:
+        - default: 2.50E-04
+        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+      - PE:
+        - default: 276.00
+        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+
+attributes:
+  - duration
+  - electrical_consumption
+
+constants:
+  - default_consumption : 25
+
+other:
+  - elec: 
+    - 1: electrical_consumption*duration
+    - 2: default_consumption
+  - other : impact_factors.other
+  - usage : elec*impact_factor.elec

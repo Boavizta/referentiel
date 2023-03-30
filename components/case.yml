@@ -1,0 +1,25 @@
+nom: CASE
+type: component
+
+impact_factors:
+  - other:
+    - GWP :
+      - rack: 150
+      - blade_unit: 30.90
+      - blade_enclosure: 880
+      - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+    - ADP:
+      - rack: 2.02E-02
+      - blade_unit: 6.72E-04
+      - blade_enclosure: 4.32E-01
+      - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+    - PE:
+      - rack: 2200
+      - blade_unit: 435
+      - blade_enclosure: 12700
+      - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+
+other:
+  - other : 
+    - blade: impact_factors.other.blade_unit + (impact_factors.other.blade_enclosure/16)
+    - rack: impact_factors.other.rack

@@ -1,0 +1,102 @@
+- GWP :
+  - name : 
+  - unit: 'kg CO2 eq.'
+  - description: 'GWPPb + GWPPf + GWPPlu' 
+- GWPPb  :
+  - name : 
+  - unit: 'kg CO2 eq.'
+  - methode: 'PEF'
+  - description:
+- GWPPf  :
+  - name : 
+  - unit: 'kg CO2 eq.'
+  - methode: 'PEF'
+  - description:
+- GWPPlu  :
+  - name :  
+  - unit: 'kg CO2 eq.'
+  - methode: 'PEF'
+  - description:  
+- IR  :
+  - name :  
+  - unit: 'kg U235 eq.'
+  - methode: 'PEF'
+  - description:  
+- LU  :
+  - name :  
+  - unit: 'No dimension'
+  - methode: 'PEF'
+  - description:
+- ODP  :
+  - name :  
+  - unit: 'kg CFC-11 eq.'
+  - methode: 'PEF'
+  - description:
+- PM  :
+  - name :  
+  - unit: 'Disease occurrence'
+  - methode: 'PEF'
+  - description:
+- POCP  :
+  - name :  
+  - unit: 'kg NMVOC eq.'
+  - methode: 'PEF'
+  - description:
+- WU  :
+  - name :  
+  - unit: 'm3 eq.'
+  - methode: 'PEF'
+  - description:
+- MIPS  :
+  - name :  
+  - unit: 'kg'
+  - description:
+- ADPe :
+  - name : 
+  - unit: 'kg SB eq.'
+  - methode: 'PEF'
+  - description:
+- ADPf :
+  - name : 
+  - unit: 'MJ'
+  - methode: 'PEF'
+  - description:
+- ADP :
+  - name : 
+  - unit: 'kg SB eq.'
+  - description: 'ADPe +ADPf'
+- AP :
+  - name : 
+  - unit: 'mol H+ eq.'
+  - methode: 'PEF'
+  - description:
+- CTUe :
+  - name : 
+  - unit: 'CTUe'
+  - methode: 'PEF'
+  - description:
+- CTUh-c :
+  - name : 
+  - unit: 'CTUh'
+  - methode: 'PEF'
+  - description:
+- CTUh-nc  :
+  - name : 
+  - unit: 'CTUh'
+  - methode: 'PEF'
+  - description:  
+- Epf :
+  - name : 
+  - unit: 'kg P eq.'
+  - methode: 'PEF'
+  - description: 
+- Epm :
+  - name : 
+  - unit: 'kg N eq.'
+  - methode: 'PEF'
+  - description:
+- Ept :
+  - name : 
+  - unit: 'mol N eq.'
+  - methode: 'PEF'
+  - description: 

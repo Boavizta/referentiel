@@ -1,0 +1,38 @@
+nom: CPU
+type: component
+
+impact_factors:
+    - elec : electricity.yml
+    - other:
+      - GWP :
+        - default: 
+           - fix: 5.22
+           - variable: 2.20
+        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+      - ADP:
+        - default: 
+           - fix: 1.69E-03
+           - variable: 6.30E-05
+        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+      - PE:
+        - default: 
+           - fix: 74.00
+           - variable: 27.30
+        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+
+constants:
+  - default_consumption_per_gb : 0.284
+
+attributes:
+  - duration
+  - electrical_consumption
+  - capacity
+  - density
+
+other:
+  - elec: 
+    - 1 : electrical_consumption*duration
+    - 2 : (default_consumption_per_gb*capacity)*duration
+  - manufacture : 
+    - 1 : (capacity/density) * impact_factor.other.variable + impact_factor.other.fix
+  - usage : elec*impact_factor.elec

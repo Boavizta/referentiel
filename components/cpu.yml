@@ -1,0 +1,37 @@
+nom: CPU
+type: component
+
+impact_factors:
+    - elec : electricity.yml
+    - other:
+      - GWP :
+        - default: 
+           - fix: 5.80E-07
+           - variable: 1.97
+        - source: 
+      - ADP:
+        - default: 
+           - fix: 2.04E-02
+           - variable: 9.14
+        - source: 
+      - PE:
+        - default: 
+           - fix: 2.04E-02
+           - variable: 9.14
+        - source: 
+
+
+attributes:
+  - duration
+  - load
+  - electrical_consumption
+  - die_size
+  - {a,b,c,d}
+
+other:
+  - elec: 
+    - 1 : electrical_consumption*duration
+    - 2 : (a*ln(b+(load*c))+d)*duration
+  - manufacture : 
+    - 1 : die_size * impact_factor.other.variable + impact_factor.other.fix
+  - usage : elec*impact_factor.elec
