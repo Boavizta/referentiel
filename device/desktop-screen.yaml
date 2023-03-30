@@ -1,0 +1,85 @@
+nom: DISPLAY
+type: device
+
+impact_factor:
+  - elec : electricity.yml
+  - other:
+    - GWP :
+      - default: 6,47E+01
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip    
+    - GWPPb  :
+      - default: 3,09E-01
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - GWPPf  :
+      - default: 6,45E+01
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - GWPPlu  :
+      - default: 2,83E-06
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - IR  :
+      - default: 1,45E+02
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip    
+    - LU  :
+      - default: -1,01E+02
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - ODP  :
+      - default: 4,95E-06
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - PM  :
+      - default: 2,57E-06
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - POCP  :
+      - default: 2,00E-01
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - WU  :
+      - default: -6,40E+02
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip  
+    - MIPS  :
+      - default: 4,23E+02
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - ADPe :
+      - default: 1,08E-02
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - ADPf :
+      - default: 1,30E+03
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - ADP :
+      - default:
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - AP :
+      - default: 3,82E-01
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - CTUe :
+      - default: 4,77E+02
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - CTUh-c :
+      - default: 4,57E-10
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - CTUh-nc  :
+      - default: 5,93E-07
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - Epf :
+      - default: -1,08E-02
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - Epm :
+      - default: 1,09E-01
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+    - Ept :
+      - default: 6,50E-01
+      - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
+
+constants:
+  - default_consumption : TBD
+
+attributes:
+  - duration
+  - power
+
+methods:
+  - elec: 
+    - 1 : power*duration
+    - 2 : default_consumption*duration
+  - other : 
+    - pro: impact_factors.other.pro
+    - perso : impact_factors.other.perso
+  - usage : elec*impact_factor.elec 
