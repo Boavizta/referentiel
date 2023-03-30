@@ -1,9 +1,6 @@
 nom: Server
 type: device 
 
-constants:
-  - other_consumption_ratio: 0.15
-
 attributes:
   - server
   - instances_per_server

@@ -27,9 +27,7 @@ constants:
   - default_consumption : 45
 
 attributes:
-  - location
   - duration
-  - load
   - electrical_consumption
   - density
   - capacity

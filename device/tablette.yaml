@@ -1,97 +1,86 @@
-nom: SERVER
+nom: TABLETTE
 type: device
 
 impact_factor:
   - elec : electricity.yml
   - other:
     - GWP :
-      - default: 3.66E+03
+      - default: 7,59E+01
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip    
-    - GWPPb  :
-      - default: 4.19E+00
+    - GWPPb :
+      - default: 1,49E-01
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
-    - GWPPf  :
-      - default: 3.66E+03
+    - GWPPf :
+      - default: 7,59E+01
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
-    - GWPPlu  :
-      - default: 6.65E-07
+    - GWPPlu :
+      - default: 3,18E-06
+      - perso: 3,78E-06
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
-    - IR  :
-      - default: 2.32E+03
+    - IR :
+      - default: 3,24E+01
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip    
-    - LU  :
-      - default: -1.47E+02
+    - LU :
+      - default: -1,34E+00
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
-    - ODP  :
-      - default: 1.35E-03
+    - ODP :
+      - default: 2,40E-05
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
-    - PM  :
-      - default: 1.13E-04
+    - PM :
+      - default: 2,62E-06
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
-    - POCP  :
-      - default: 8.40E+00
+    - POCP :
+      - default: 1,96E-01
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
-    - WU  :
-      - default: -3.71E+03
+    - WU :
+      - default: -8,46E+01
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip  
-    - MIPS  :
-      - default: 1.06E+04
+    - MIPS :
+      - default: 2,79E+02
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
     - ADPe :
-      - default: 3.78E-02
+      - default: 3,75E-03
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
     - ADPf :
-      - default: 5.15E+04
+      - default: 1,00E+03
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
     - ADP :
       - default:
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
     - AP :
-      - default: 1.97E+01
+      - default: 4,65E-01
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
-    - CTUe :
-      - default: 4.84E+04
+    - CTUe : 
+      - default: 1,54E+03
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
     - CTUh-c :
-      - default: 1.94E-07
+      - default: 1,79E-08
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
     - CTUh-nc  :
-      - default: 1.87E-05
+      - default: 6,99E-07
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
     - Epf :
-      - default: -2.58E-01
+      - default: -2,80E-03
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
     - Epm :
-      - default: 2.94E+00
+      - default: 6,30E-02
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
     - Ept :
-      - default: 2.70E+01
+      - default: 6,09E-01
       - source: https://base-impacts.ademe.fr/documents/Negaoctet.zip   
 
 constants:
-  - other_consumption_ratio: 0.33
+  - default_consumption : TBD
 
 attributes:
   - duration
-  - load
   - power
-
-components:
-  - CPU
-  - RAM
-  - SSD
-  - HDD
-  - MOTHERBOARD
-  - ASSEMBLY
-  - POWER_SUPPLY
-  - CASING
-  - OTHER
 
 methods:
   - elec: 
     - 1 : power*duration
-    - 2 : (CPU.elec(load)+RAM.elec(load))*(1+other_consumption_ratio)*duration
+    - 2 : default_consumption*duration
   - other : 
-    - 1 : CPU.other+RAM.other+SSD.other+HDD.other+MOTHERBOARD.other+ASSEMBLY.other+POWER_SUPPLY.other+CASING.other
-    - 2 : impact_factor.other
-  - usage : elec*impact_factor.elec
+    - pro: impact_factors.other.pro
+    - perso : impact_factors.other.perso
+  - usage : elec*impact_factor.elec 

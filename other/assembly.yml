@@ -13,9 +13,5 @@ impact_factors:
       - default: 68.60
       - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
 
-attributes:
-  - duration
-  - electrical_consumption
-
 other:
   - other : impact_factors.other
