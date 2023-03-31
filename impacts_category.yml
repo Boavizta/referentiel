@@ -1,6 +1,7 @@
 - GWP :
   - name : 
   - unit: 'kg CO2 eq.'
+  - methode: 'PEF'
   - description: 'GWPPb + GWPPf + GWPPlu' 
 - GWPPb  :
   - name : 
