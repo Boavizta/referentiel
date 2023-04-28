@@ -1,25 +1,45 @@
-nom: CASE
+name: CASE
 type: component
+unit: 1
 
 impact_factors:
-  - other:
-    - GWP :
-      - rack: 150
-      - blade_unit: 30.90
-      - blade_enclosure: 880
-      - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
-    - ADP:
-      - rack: 2.02E-02
-      - blade_unit: 6.72E-04
-      - blade_enclosure: 4.32E-01
-      - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
-    - PE:
-      - rack: 2200
-      - blade_unit: 435
-      - blade_enclosure: 12700
-      - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+  elec: electricity.yml
+  embedded:
+    gwp :
+      default:
+        rack: 150
+        blade_unit: 30.90
+        blade_enclosure: 880
+        source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+        warning: "only manufacture and raw material extraction phases are taken into account"
+    adp:
+      default:
+        rack: 2.02E-02
+        blade_unit: 6.72E-04
+        blade_enclosure: 4.32E-01
+        source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+        warning: "only manufacture and raw material extraction phases are taken into account"
+    pe:
+      default:
+        rack: 2200
+        blade_unit: 435
+        blade_enclosure: 12700
+        source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+        warning: "only manufacture and raw material extraction phases are taken into account"
 
-other:
-  - other : 
-    - blade: impact_factors.other.blade_unit + (impact_factors.other.blade_enclosure/16)
-    - rack: impact_factors.other.rack
+attributes:
+  duration:
+    unit: hours
+  average_power:
+    unit: W
+
+method:
+  elec:
+    1: average_power*duration
+    2: 0
+  embedded :
+    blade:
+      1: impact_factors.embedded.blade_unit + (impact_factors.embedded.blade_enclosure/16)
+    rack:
+      1: impact_factors.embedded.rack
+  usage : elec*impact_factor.elec

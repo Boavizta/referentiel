@@ -1,102 +1,88 @@
-- GWP :
-  - name : 
-  - unit: 'kg CO2 eq.'
-  - description: 'GWPPb + GWPPf + GWPPlu' 
-- GWPPb  :
-  - name : 
-  - unit: 'kg CO2 eq.'
-  - methode: 'PEF'
-  - description:
-- GWPPf  :
-  - name : 
-  - unit: 'kg CO2 eq.'
-  - methode: 'PEF'
-  - description:
-- GWPPlu  :
-  - name :  
-  - unit: 'kg CO2 eq.'
-  - methode: 'PEF'
-  - description:  
-- IR  :
-  - name :  
-  - unit: 'kg U235 eq.'
-  - methode: 'PEF'
-  - description:  
-- LU  :
-  - name :  
-  - unit: 'No dimension'
-  - methode: 'PEF'
-  - description:
-- ODP  :
-  - name :  
-  - unit: 'kg CFC-11 eq.'
-  - methode: 'PEF'
-  - description:
-- PM  :
-  - name :  
-  - unit: 'Disease occurrence'
-  - methode: 'PEF'
-  - description:
-- POCP  :
-  - name :  
-  - unit: 'kg NMVOC eq.'
-  - methode: 'PEF'
-  - description:
-- WU  :
-  - name :  
-  - unit: 'm3 eq.'
-  - methode: 'PEF'
-  - description:
-- MIPS  :
-  - name :  
-  - unit: 'kg'
-  - description:
-- ADPe :
-  - name : 
-  - unit: 'kg SB eq.'
-  - methode: 'PEF'
-  - description:
-- ADPf :
-  - name : 
-  - unit: 'MJ'
-  - methode: 'PEF'
-  - description:
-- ADP :
-  - name : 
-  - unit: 'kg SB eq.'
-  - description: 'ADPe +ADPf'
-- AP :
-  - name : 
-  - unit: 'mol H+ eq.'
-  - methode: 'PEF'
-  - description:
-- CTUe :
-  - name : 
-  - unit: 'CTUe'
-  - methode: 'PEF'
-  - description:
-- CTUh-c :
-  - name : 
-  - unit: 'CTUh'
-  - methode: 'PEF'
-  - description:
-- CTUh-nc  :
-  - name : 
-  - unit: 'CTUh'
-  - methode: 'PEF'
-  - description:  
-- Epf :
-  - name : 
-  - unit: 'kg P eq.'
-  - methode: 'PEF'
-  - description: 
-- Epm :
-  - name : 
-  - unit: 'kg N eq.'
-  - methode: 'PEF'
-  - description:
-- Ept :
-  - name : 
-  - unit: 'mol N eq.'
-  - methode: 'PEF'
-  - description: 
+gwp:
+  unit: kgCO2eq
+  description: Total climate change
+  method: None
+adp:
+  unit: kgSbeq
+  description: Use of minerals and fossil ressources
+  method: None
+pe:
+  unit: MJ
+  description: Consumption of primary energy
+  method: None
+gwpb:
+  unit: kg CO2 eq.
+  description: Climate change - Contribution of biogenic emissions
+  method: PEF
+gwpf:
+  unit: kg CO2 eq.
+  description: Climate change - Contribution of fossil fuel emissions
+  method: PEF
+gwplu:
+  unit: kg CO2 eq.
+  description: Climate change - Contribution of emissions from land use change
+  method: PEF
+ir:
+  unit: kg U235 eq.
+  description: Emissions of radionizing substances
+  method: PEF
+lu:
+  unit: No dimension
+  description: Land use
+  method: PEF
+odp:
+  unit: kg CFC-11 eq.
+  description: Depletion of the ozone layer
+  method: PEF
+pm:
+  unit: Disease occurrence
+  description: Fine particle emissions
+  method: PEF
+pocp:
+  unit: kg NMVOC eq.
+  description: Photochemical ozone formation
+  method: PEF
+wu:
+  unit: m3 eq.
+  description: Use of water resources
+  method: PEF
+mips:
+  unit: kg
+  description: Material input per unit of service
+  method: None
+adpe:
+  unit: kg SB eq.
+  description: Use of mineral and metal resources
+  method: PEF
+adpf:
+  unit: MJ
+  description: Use of fossil resources (including nuclear)
+  method: PEF
+ap:
+  unit: mol H+ eq.
+  description: Acidification
+  method: PEF
+ctue:
+  unit: CTUe
+  description: Freshwater ecotoxicity
+  method: PEF
+ctuh-c:
+  unit: CTUh
+  description: Human Toxicity - Carcinogenic Effects
+  method: PEF
+ctuh-nc:
+  unit: CTUh
+  description: Human toxicity - non-carcinogenic effects
+  method: PEF
+epf:
+  unit: kg P eq.
+  description: Eutrophication of freshwater
+  method: PEF
+epm:
+  unit: kg N eq.
+  description: Eutrophication of marine waters
+  method: PEF
+ept:
+  unit: mol N eq.
+  description: Terrestrial eutrophication
+  method: PEF

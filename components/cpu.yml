@@ -1,37 +1,48 @@
-nom: CPU
+name: CPU
 type: component
+unit: 1
 
 impact_factors:
-    - elec : electricity.yml
-    - other:
-      - GWP :
-        - default: 
-           - fix: 5.80E-07
-           - variable: 1.97
-        - source: 
-      - ADP:
-        - default: 
-           - fix: 2.04E-02
-           - variable: 9.14
-        - source: 
-      - PE:
-        - default: 
-           - fix: 2.04E-02
-           - variable: 9.14
-        - source: 
+    elec : electricity.yml
+    embedded:
+      gwp :
+        default: 
+           fix: 5.80E-07
+           variable: 1.97
+           warning: "only manufacture and raw material extraction phases are taken into account"
+           source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+      adp:
+        default: 
+           fix: 2.04E-02
+           variable: 9.14
+           warning: "only manufacture and raw material extraction phases are taken into account"
+           source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+      pe:
+        default:
+           fix: 2.04E-02
+           variable: 9.14
+           warning: "only manufacture and raw material extraction phases are taken into account"
+           source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
 
 
 attributes:
-  - duration
-  - load
-  - electrical_consumption
-  - die_size
-  - {a,b,c,d}
+  duration:
+    unit: hours
+  load:
+    unit: %
+  average_power:
+    unit: W
+  die_size:
+    unit: mm2
+    description: die size of the CPU
+  a,b,c,d:
+    unit: none
+    description: parameters of the power model
 
-other:
-  - elec: 
-    - 1 : electrical_consumption*duration
-    - 2 : (a*ln(b+(load*c))+d)*duration
-  - manufacture : 
-    - 1 : die_size * impact_factor.other.variable + impact_factor.other.fix
-  - usage : elec*impact_factor.elec
+method:
+  elec: 
+    1 : average_power*duration
+    2 : (a*ln(b+(load*c))+d)*duration
+  manufacture :
+    1 : die_size * impact_factor.embedded.variable + impact_factor.embedded.fix
+  usage : elec*impact_factor.elec

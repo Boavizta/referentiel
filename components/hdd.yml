@@ -1,29 +1,41 @@
-nom: HDD
+name: HDD
 type: component
+unit: 1
 
 impact_factors:
-    - elec : electricity.yml
-    - other:
-      - GWP :
-        - default: 31.10
-        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
-      - ADP:
-        - default: 2.50E-04
-        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
-      - PE:
-        - default: 276.00
-        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+    elec : electricity.yml
+    embedded:
+      gwp :
+        default:
+          value: 31.10
+          source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+          warning: "only manufacture and raw material extraction phases are taken into account"
+      adp:
+        default:
+          value: 2.50E-04
+          source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+          warning: "only manufacture and raw material extraction phases are taken into account"
+      pe:
+        default:
+          value: 276.00
+          source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+          warning: "only manufacture and raw material extraction phases are taken into account"
 
 attributes:
-  - duration
-  - electrical_consumption
+  duration:
+    unit: hours
+  average_power:
+    unit: W
 
 constants:
-  - default_consumption : 25
+  default_power :
+    value: 25
+    unit: W
+    description: default consumption of the HDD
 
-other:
-  - elec: 
-    - 1: electrical_consumption*duration
-    - 2: default_consumption
-  - other : impact_factors.other
-  - usage : elec*impact_factor.elec
+method:
+  elec: 
+    1: average_power*duration
+    2: default_power*duration
+  embedded : impact_factors.embedded
+  usage : elec*impact_factor.elec

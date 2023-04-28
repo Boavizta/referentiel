@@ -1,0 +1,87 @@
+name: EXTERNAL_SSD
+type: device
+unit: 1
+
+
+impact_factor:
+  elec : electricity.yml
+  embedded:
+    adpe:
+      impact: 0.000397
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    adpf:
+      impact: 1430.0
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    ap:
+      impact: 0.6
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    ctue:
+      impact: 1380.0
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    ctuh-c:
+      impact: 1.15e-08
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    ctuh-nc:
+      impact: 5.95e-07
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    epf:
+      impact: -0.00171
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    epm:
+      impact: 0.074
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    ept:
+      impact: 0.75
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    gwp:
+      impact: 109.0
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    gwpb:
+      impact: 0.0765
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    gwpf:
+      impact: 109.0
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    gwplu:
+      impact: 3.89e-09
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    ir:
+      impact: 6.9
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    lu:
+      impact: -1.05
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    mips:
+      impact: 264.0
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    odp:
+      impact: 4.56e-05
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    pm:
+      impact: 3.33e-06
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    pocp:
+      impact: 0.238
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    wu:
+      impact: -4.78
+      source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+
+constants:
+  default_power: 
+    value: 2.5
+    unit: W
+
+attributes:
+  duration:
+    unit: hours
+  average_power:
+    unit: W
+
+methods:
+  elec:
+    1 : average_power*duration
+    2 : default_consumption*duration
+  embedded :
+    impact_factors.embedded.perso
+  usage : elec*impact_factor.elec

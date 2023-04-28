@@ -1,0 +1,167 @@
+name: DESKTOP
+type: device
+unit: 1
+
+
+impact_factor:
+  elec : electricity.yml
+  embedded:
+    adpe:
+      perso:
+        impact: 0.00852
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 0.00852
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    adpf:
+      perso:
+        impact: 5110.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 5110.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    ap:
+      perso:
+        impact: 1.55
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 1.55
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    ctue:
+      perso:
+        impact: 4640.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 4640.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    ctuh-c:
+      perso:
+        impact: -2.83e-08
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: -2.83e-08
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    ctuh-nc:
+      perso:
+        impact: 1.49e-06
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 1.49e-06
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    epf:
+      perso:
+        impact: -0.0852
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: -0.0852
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    epm:
+      perso:
+        impact: 0.309
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 0.309
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    ept:
+      perso:
+        impact: 2.28
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 2.28
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    gwp:
+      perso:
+        impact: 277.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 277.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    gwpb:
+      perso:
+        impact: 0.924
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 0.924
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    gwpf:
+      perso:
+        impact: 275.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 275.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    gwplu:
+      perso:
+        impact: 2.27e-07
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 2.27e-07
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    ir:
+      perso:
+        impact: 870.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 870.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    lu:
+      perso:
+        impact: -101.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: -101.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    mips:
+      perso:
+        impact: 1460.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 1460.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    odp:
+      perso:
+        impact: 6.24e-05
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 6.24e-05
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    pm:
+      perso:
+        impact: 9.6e-06
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 9.6e-06
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    pocp:
+      perso:
+        impact: 0.72
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: 0.72
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+    wu:
+      perso:
+        impact: -4490.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+      pro:
+        impact: -4490.0
+        source: https://base-impacts.ademe.fr/documents/negaoctet.zip
+
+constants:
+  default_power: 
+    value: 175.0
+    unit: W
+
+attributes:
+  duration:
+    unit: hours
+  average_power:
+    unit: W
+
+methods:
+  elec:
+    1 : average_power*duration
+    2 : default_consumption*duration
+  embedded :
+    impact_factors.embedded.perso
+  usage : elec*impact_factor.elec

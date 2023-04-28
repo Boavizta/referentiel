@@ -1,0 +1,15 @@
+name: IaaS
+type: device 
+unit: 1
+
+attributes:
+  server:
+    description: The server where the IaaS instance is running
+    type: Server.yml
+  instances_per_server:
+    description: number of instances per server
+    unit: null
+
+methods:
+  embedded : server.other / instances_per_server
+  usage : server.usage / instances_per_server

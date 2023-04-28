@@ -1,41 +1,49 @@
-nom: SSD
+name: SSD
 type: component
+unit: 1
 
 impact_factors:
-    - elec : electricity.yml
-    - other:
-      - GWP :
-        - default: 
-           - fix: 6.34
-           - variable: 2.20
-           - warning: "only manufacture phase is taken into account"
-        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
-      - ADP:
-        - default: 
-           - fix: 5.63E-04
-           - variable: 6.30E-05
-           - warning: "only manufacture phase is taken into account"
-        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
-      - PE:
-        - default: 
-           - fix: 76.90
-           - variable: 27.30
-           - warning: "only manufacture phase is taken into account"  
-        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+    elec : electricity.yml
+    embedded:
+      gwp :
+        default: 
+           fix: 6.34
+           variable: 2.20
+           source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+           warning: "only manufacture and raw material extraction phases are taken into account"
+      adp:
+        default: 
+           fix: 5.63E-04
+           variable: 6.30E-05
+           source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+           warning: "only manufacture and raw material extraction phases are taken into account"
+      pe:
+        default: 
+           fix: 76.90
+           variable: 27.30
+           source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+           warning: "only manufacture and raw material extraction phases are taken into account"
 
 constants:
-  - default_consumption : 45
+  default_power:
+    value: 45
+    unit: W
+    description: default consumption per SSD
 
 attributes:
-  - duration
-  - electrical_consumption
-  - density
-  - capacity
+  duration:
+    unit: hours
+  average_power:
+    unit: W
+  density:
+    unit: GB/cm2
+  capacity:
+    unit: GB
 
 other:
-  - elec: 
-    - 1 : electrical_consumption*duration
-    - 2 : default_consumption*duration
-  - other : 
-    - 1 : (capacity/density) * impact_factor.other.variable + impact_factor.other.fix
-  - usage : elec*impact_factor.elec
+  elec: 
+    1 : average_power*duration
+    2 : default_power*duration
+  embedded :
+    1 : (capacity/density) * impact_factor.embedded.variable + impact_factor.embedded.fix
+  usage : elec*impact_factor.elec

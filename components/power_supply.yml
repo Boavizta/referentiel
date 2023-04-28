@@ -1,26 +1,35 @@
-nom: POWER_SUPPLY
+name: POWER_SUPPLY
 type: component
+unit: 1
 
 impact_factors:
-    - elec : electricity.yml
-    - other:
-      - GWP :
-        - default: 24.30
-        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
-      - ADP:
-        - default: 8.30E-03
-        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
-      - PE:
-        - default: 352.00
-        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+    elec : electricity.yml
+    embedded:
+      gwp :
+        default:
+          value: 24.30
+          source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+          warning: "only manufacture and raw material extraction phases are taken into account"
+      adp:
+        default:
+          value: 8.30E-03
+          source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+          warning: "only manufacture and raw material extraction phases are taken into account"
+      pe:
+        default:
+          value: 352.00
+          source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+          warning: "only manufacture and raw material extraction phases are taken into account"
 
 attributes:
-  - duration
-  - electrical_consumption
+  duration:
+    unit: hours
+  average_power:
+    unit: W
 
-other:
-  - elec: 
-    - 1: electrical_consumption*life_duration
-    - 2: 0
-  - other : impact_factors.other
-  - usage : elec*impact_factor.elec
+method:
+  elec: 
+    1: average_power*life_duration
+    2: 0
+  embedded : impact_factors.embedded
+  usage : elec*impact_factor.elec

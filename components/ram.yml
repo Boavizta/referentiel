@@ -1,38 +1,49 @@
-nom: CPU
+name: CPU
 type: component
+unit: 1
 
 impact_factors:
-    - elec : electricity.yml
-    - other:
-      - GWP :
-        - default: 
-           - fix: 5.22
-           - variable: 2.20
-        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
-      - ADP:
-        - default: 
-           - fix: 1.69E-03
-           - variable: 6.30E-05
-        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
-      - PE:
-        - default: 
-           - fix: 74.00
-           - variable: 27.30
-        - source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+    elec : electricity.yml
+    embedded:
+      gwp :
+        default: 
+           fix: 5.22
+           variable: 2.20
+           source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+           warning: "only manufacture and raw material extraction phases are taken into account"
+      adp:
+        default: 
+           fix: 1.69E-03
+           variable: 6.30E-05
+           source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+           warning: "only manufacture and raw material extraction phases are taken into account"
+      pe:
+        default: 
+           fix: 74.00
+           variable: 27.30
+           source: https://www.researchgate.net/publication/352707793_2021-06-17_texte_94-2021_green-cloud-computing
+           warning: "only manufacture and raw material extraction phases are taken into account"
 
 constants:
-  - default_consumption_per_gb : 0.284
+  default_consumption_per_gb :
+    value: 0.284
+    unit: W/GB
+    description: default consumption per GB of RAM
 
 attributes:
-  - duration
-  - electrical_consumption
-  - capacity
-  - density
+  duration:
+    unit: hours
+  average_power:
+    unit: W
+  capacity:
+    unit: GB
+  density:
+    unit: GB/cm2
 
-other:
-  - elec: 
-    - 1 : electrical_consumption*duration
-    - 2 : (default_consumption_per_gb*capacity)*duration
-  - manufacture : 
-    - 1 : (capacity/density) * impact_factor.other.variable + impact_factor.other.fix
-  - usage : elec*impact_factor.elec
+method:
+  elec: 
+    1 : average_power*duration
+    2 : (default_consumption_per_gb*capacity)*duration
+  embedded :
+    1 : (capacity/density) * impact_factor.embedded.variable + impact_factor.embedded.fix
+  usage : elec*impact_factor.elec
